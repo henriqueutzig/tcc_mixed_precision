@@ -32,7 +32,7 @@ def main(args):
                 print(e)
             
             device = '/GPU:0'
-            device_name = gpus.name # FIX: Get name from the first GPU object in the list
+            device_name = gpus[0].name # FIX: Get name from the first GPU object in the list
     else:
         print(f"Framework {args.framework} not supported.")
         return
