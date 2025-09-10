@@ -20,12 +20,19 @@ def main(args):
         device_name = torch.cuda.get_device_name(0)
     elif args.framework == 'tensorflow':
         gpus = tf.config.list_physical_devices('GPU')
-        if not gpus:
-            print("TensorFlow GPU not available. Exiting.")
-            return
-        tf.config.experimental.set_memory_growth(gpus, True)
-        device = '/GPU:0'
-        device_name = gpus.name
+        if gpus:
+            try:
+                # FIX: Iterate over the list of GPUs and set memory growth for each one.
+                for gpu in gpus:
+                    tf.config.experimental.set_memory_growth(gpu, True)
+                logical_gpus = tf.config.list_logical_devices('GPU')
+                print(f"{len(gpus)} Physical GPUs, {len(logical_gpus)} Logical GPUs")
+            except RuntimeError as e:
+                # Memory growth must be set before GPUs have been initialized
+                print(e)
+            
+            device = '/GPU:0'
+            device_name = gpus.name # FIX: Get name from the first GPU object in the list
     else:
         print(f"Framework {args.framework} not supported.")
         return
