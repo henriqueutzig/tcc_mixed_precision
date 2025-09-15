@@ -1,42 +1,20 @@
-# -------------------------
-# TensorFlow ROCm 2.14 stack
-# -------------------------
-tensorflow-rocm==2.14.0.600
-keras==2.14.0
-tensorflow-text==2.14.0
-tf-models-official==2.14.0
-tensorflow-hub==0.15.0
-ml-dtypes==0.2.0
-protobuf==3.20.3
-tensorboard==2.14.0
-
-# -------------------------
-# PyTorch ROCm stack (adjust ROCm version below if needed)
-# -------------------------
-# torch==2.2.0+rocm6.3
-# torchvision==0.17.0+rocm6.3
-# torchaudio==2.2.0+rocm6.3
-# Index URL for ROCm wheels must be provided during install
-
+pandas
+tqdm
+# For NVIDIA
+pynvml
+# For AMD (ensure ROCm is installed)
+pyrsmi
 # Core ML Frameworks (install the appropriate one for your GPU)
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6
 # pip install tensorflow[and-cuda]
-
-# -------------------------
-# General ML / DL libraries
-# -------------------------
-pandas
-tqdm
+# General
 timm
 transformers
 scipy
 librosa
 unidecode
 inflect
-
-# -------------------------
-# Monitoring
-# -------------------------
-pynvml     # for NVIDIA GPUs
-pyrsmi     # for AMD ROCm GPUs
+tensorflow_hub
+tensorflow-text
+tf-models-official
