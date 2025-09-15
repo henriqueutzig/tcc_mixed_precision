@@ -3,7 +3,7 @@ tqdm
 # For NVIDIA
 pynvml
 # For AMD (ensure ROCm is installed)
-# pyrsmi
+pyrsmi
 # Core ML Frameworks (install the appropriate one for your GPU)
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6

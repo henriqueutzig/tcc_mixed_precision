@@ -40,7 +40,7 @@ def main(args):
     print(f"Running on device: {device_name}")
 
     # Start metrics logger
-    metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor)
+    metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor, gpu_index=device.index if args.framework == 'pytorch' else 0, interval=1)
     metrics_logger.start()
 
     # Run training
