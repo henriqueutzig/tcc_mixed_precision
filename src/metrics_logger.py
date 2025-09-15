@@ -1,104 +1,106 @@
-# metrics_logger.py
+import csv
+import os
 import threading
 import time
-import statistics
+from datetime import datetime
 
-class GpuMetricsLogger:
-    """A class to monitor and log GPU metrics in a background thread."""
-    def __init__(self, gpu_vendor, gpu_index=0, interval=1):
-        if gpu_vendor not in ['nvidia', 'amd']:
-            raise ValueError("Unsupported GPU vendor. Choose 'nvidia' or 'amd'.")
-        
+try:
+    import pynvml  # NVIDIA
+except ImportError:
+    pynvml = None
+
+try:
+    import pyrsmi  # AMD
+except ImportError:
+    pyrsmi = None
+
+
+class MetricsLogger:
+    def __init__(self, gpu_vendor, framework, model, precision, batch_size, log_interval=5):
         self.gpu_vendor = gpu_vendor
-        self.gpu_index = gpu_index
-        self.interval = interval
-        self.monitoring = False
-        self.metrics = []
+        self.framework = framework
+        self.model = model
+        self.precision = precision
+        self.batch_size = batch_size
+        self.log_interval = log_interval
+        self.running = False
         self.thread = None
-        self.handle = None
 
-        if self.gpu_vendor == 'nvidia':
-            try:
-                from pynvml import nvmlInit, nvmlDeviceGetHandleByIndex, nvmlDeviceGetUtilizationRates, nvmlDeviceGetMemoryInfo, nvmlDeviceGetPowerUsage
-                self.nvml = {
-                    "init": nvmlInit,
-                    "get_handle": nvmlDeviceGetHandleByIndex,
-                    "get_util": nvmlDeviceGetUtilizationRates,
-                    "get_mem": nvmlDeviceGetMemoryInfo,
-                    "get_power": nvmlDeviceGetPowerUsage
-                }
-                self.nvml['init']()
-                self.handle = self.nvml['get_handle'](self.gpu_index)
-            except ImportError:
-                print("pynvml not found. Please install it for NVIDIA GPU monitoring.")
-                self.gpu_vendor = 'unsupported'
-        elif self.gpu_vendor == 'amd':
-            try:
-                from pyrsmi import rocml
-                self.rocml = rocml
-                self.rocml.smi_initialize()
-            except ImportError:
-                print("pyrsmi not found. Please install it for AMD GPU monitoring.")
-                self.gpu_vendor = 'unsupported'
+        # Output file
+        os.makedirs("results/metrics", exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        self.filename = f"results/metrics/{gpu_vendor}_{framework}_{model}_{precision}_{timestamp}.csv"
 
-    def _monitor_thread(self):
-        """The target function for the monitoring thread."""
-        while self.monitoring:
-            try:
-                if self.gpu_vendor == 'nvidia':
-                    util = self.nvml['get_util'](self.handle)
-                    mem = self.nvml['get_mem'](self.handle)
-                    power = self.nvml['get_power'](self.handle) / 1000.0  # Convert mW to W
-                    self.metrics.append({
-                        'timestamp': time.time(),
-                        'utilization_percent': util.gpu,
-                        'memory_used_mb': mem.used / (1024**2),
-                        'power_watts': power
-                    })
-                elif self.gpu_vendor == 'amd':
-                    power = self.rocml.smi_get_device_average_power(self.gpu_index)
-                    mem_used = self.rocml.smi_get_device_memory_used(self.gpu_index)
-                    util = self.rocml.smi_get_device_utilization(self.gpu_index)
-                    self.metrics.append({
-                        'timestamp': time.time(),
-                        'utilization_percent': util,
-                        'memory_used_mb': mem_used / (1024**2),
-                        'power_watts': power
-                    })
-            except Exception as e:
-                print(f"Metric logging error: {e}")
-            time.sleep(self.interval)
+        # Initialize CSV
+        with open(self.filename, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                "timestamp",
+                "gpu_vendor",
+                "framework",
+                "model",
+                "precision",
+                "batch_size",
+                "gpu_util",
+                "memory_used",
+                "power_watts"
+            ])
 
-    def start(self):
-        """Starts the monitoring thread."""
-        if self.gpu_vendor == 'unsupported':
-            return
-        self.monitoring = True
-        self.metrics = []
-        self.thread = threading.Thread(target=self._monitor_thread, daemon=True)
+        # Init GPU API
+        if gpu_vendor == "nvidia" and pynvml:
+            pynvml.nvmlInit()
+            self.handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+        elif gpu_vendor == "amd" and pyrsmi:
+            # AMD initialization happens on-demand
+            pass
+
+    def _log_metrics(self):
+        while self.running:
+            ts = datetime.now().isoformat()
+            util, mem, power = self._get_gpu_metrics()
+
+            with open(self.filename, "a", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow([
+                    ts,
+                    self.gpu_vendor,
+                    self.framework,
+                    self.model,
+                    self.precision,
+                    self.batch_size,
+                    util,
+                    mem,
+                    power
+                ])
+
+            time.sleep(self.log_interval)
+
+    def _get_gpu_metrics(self):
+        if self.gpu_vendor == "nvidia" and pynvml:
+            util = pynvml.nvmlDeviceGetUtilizationRates(self.handle).gpu
+            mem = pynvml.nvmlDeviceGetMemoryInfo(self.handle).used // (1024 * 1024)
+            power = pynvml.nvmlDeviceGetPowerUsage(self.handle) / 1000.0
+            return util, mem, power
+
+        elif self.gpu_vendor == "amd" and pyrsmi:
+            dev = pyrsmi.rsmi_dev_id_get(0)
+            util = pyrsmi.rsmi_dev_busy_percent_get(dev)[1]
+            mem = pyrsmi.rsmi_dev_memory_usage_get(dev, pyrsmi.RSMI_MEM_TYPE_VRAM)[1] // (1024 * 1024)
+            power = pyrsmi.rsmi_dev_power_ave_get(dev, 0)[1] / 1000.0
+            return util, mem, power
+
+        return 0, 0, 0
+
+    def start_logging(self):
+        self.running = True
+        self.thread = threading.Thread(target=self._log_metrics, daemon=True)
         self.thread.start()
 
-    def stop(self):
-        """Stops the monitoring thread."""
-        self.monitoring = False
+    def stop_logging(self):
+        self.running = False
         if self.thread:
             self.thread.join()
 
-    def get_results(self):
-        """Analyzes collected metrics and returns aggregated results."""
-        if not self.metrics:
-            return {
-                'peak_memory_mb': 0,
-                'avg_utilization_percent': 0,
-                'avg_power_watts': 0
-            }
-        
-        return {
-            'peak_memory_mb': max(m['memory_used_mb'] for m in self.metrics),
-            'avg_utilization_percent': statistics.mean(m['utilization_percent'] for m in self.metrics),
-            'avg_power_watts': statistics.mean(m['power_watts'] for m in self.metrics)
-        }
-
-    def __del__(self):
-        if self.gpu_vendor == 'amd' and hasattr(self, 'rocml'):
-            self.rocml.smi_shutdown()
+    def finalize(self, total_time):
+        print(f"📊 Metrics saved to {self.filename}")
+        print(f"⏱️ Total training time: {total_time:.2f} seconds")

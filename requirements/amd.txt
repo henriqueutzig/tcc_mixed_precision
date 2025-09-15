@@ -1,0 +1,24 @@
+# -------------------------
+# PyTorch ROCm stack
+# -------------------------
+torch==2.2.0+rocm6.3
+torchvision==0.17.0+rocm6.3
+torchaudio==2.2.0+rocm6.3
+--extra-index-url https://download.pytorch.org/whl/rocm6.3
+
+# -------------------------
+# TensorFlow ROCm stack
+# -------------------------
+tensorflow-rocm==2.14.0.600
+keras==2.14.0
+tensorflow-text==2.14.0
+tf-models-official==2.14.0
+tensorflow-hub==0.15.0
+ml-dtypes==0.2.0
+protobuf==3.20.3
+tensorboard==2.14.0
+
+# -------------------------
+# Monitoring (AMD only)
+# -------------------------
+pyrsmi

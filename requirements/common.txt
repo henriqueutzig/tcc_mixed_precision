@@ -1,0 +1,9 @@
+# General ML / DL libraries (shared)
+pandas
+tqdm
+timm
+transformers
+scipy
+librosa
+unidecode
+inflect

@@ -1,0 +1,24 @@
+# -------------------------
+# PyTorch CUDA stack
+# -------------------------
+torch==2.2.0+cu118
+torchvision==0.17.0+cu118
+torchaudio==2.2.0+cu118
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+# -------------------------
+# TensorFlow CUDA stack
+# -------------------------
+tensorflow==2.14.0
+keras==2.14.0
+tensorflow-text==2.14.0
+tf-models-official==2.14.0
+tensorflow-hub==0.15.0
+ml-dtypes==0.2.0
+protobuf==3.20.3
+tensorboard==2.14.0
+
+# -------------------------
+# Monitoring (NVIDIA only)
+# -------------------------
+pynvml
