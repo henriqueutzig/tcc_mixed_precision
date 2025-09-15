@@ -1,0 +1,3 @@
+timestamp,gpu_vendor,gpu_name,framework,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-09-15T09:15:42.282837,nvidia,NVIDIA GeForce RTX 4090,pytorch,resnet50,fp32,32,1,4.805393934249878,665.9183500425174,2.2970125675201416,0,6385.0625,64.66666666666667,198.4485
+2025-09-15T09:16:22.538920,amd,Radeon RX 7900 XT,pytorch,resnet50,fp32,32,1,10.434262990951538,306.6819384152958,2.302093029022217,0,5794.28515625,81.83333333333333,230.91666666666666
