@@ -17,7 +17,7 @@ def main(args):
             print("PyTorch CUDA/ROCm not available. Exiting.")
             return
         device = torch.device("cuda")
-        device_name = torch.cuda.get_device_name(0)
+        device_name = torch.cuda.get_device_name(device.index)
     elif args.framework == 'tensorflow':
         gpus = tf.config.list_physical_devices('GPU')
         if gpus:
@@ -40,7 +40,7 @@ def main(args):
     print(f"Running on device: {device_name}")
 
     # Start metrics logger
-    metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor, gpu_index=device.index if args.framework == 'pytorch' else 0, interval=1)
+    metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor, gpu_index=1 if args.gpu_vendor == 'amd' else 0, interval=1)
     metrics_logger.start()
 
     # Run training
