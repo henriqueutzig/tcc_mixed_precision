@@ -97,7 +97,7 @@ class GpuMetricsLogger:
             'peak_memory_mb': max(m['memory_used_mb'] for m in self.metrics),
             'avg_utilization_percent': statistics.mean(m['utilization_percent'] for m in self.metrics),
             'avg_power_watts': statistics.mean(m['power_watts'] for m in self.metrics)
-        }
+        }, self.metrics
 
     def __del__(self):
         if self.gpu_vendor == 'amd' and hasattr(self, 'rocml'):

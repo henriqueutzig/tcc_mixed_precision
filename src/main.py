@@ -33,7 +33,7 @@ def main(args):
     
     # Stop metrics logger and get results
     metrics_logger.stop()
-    hardware_results = metrics_logger.get_results()
+    hardware_results, raw_gpu_metrics = metrics_logger.get_results()
 
     # Combine results
     all_results = {
@@ -63,6 +63,11 @@ def main(args):
     for key, value in all_results.items():
         print(f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}")
     print(f"Results saved to {args.output_file}")
+
+    df = pd.DataFrame(raw_gpu_metrics)
+    raw_metrics_file = args.output_file.replace('.csv', f'_raw_metrics.csv')
+    df.to_csv(raw_metrics_file, index=False)
+    print(f"Raw GPU metrics saved to {raw_metrics_file}")
 
 
 if __name__ == '__main__':
