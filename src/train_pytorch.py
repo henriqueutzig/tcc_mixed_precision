@@ -26,14 +26,7 @@ def train_model(model_name, precision, batch_size, epochs):
       - olmo-7b (causal LM training benchmark)
     """
 
-    # Setup device
-    if not torch.cuda.is_available():
-        print("PyTorch CUDA/ROCm not available. Exiting.")
-        return
-    device = torch.device("cuda")
-    device_name = torch.cuda.get_device_name(device.index)
-
-    print(f"--- Training PyTorch Model: {model_name} | Precision: {precision} | Batch: {batch_size} | Device: {device_name} ---")
+    print(f"--- Training PyTorch Model: {model_name} | Precision: {precision} | Batch: {batch_size} ---")
 
     dtype = get_pytorch_dtype(precision)
     use_amp = precision in ['fp16', 'bf16']

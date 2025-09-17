@@ -9,7 +9,14 @@ from metrics_logger import GpuMetricsLogger
 import train_pytorch
 
 def main(args):
-    
+    # Setup device
+    if not torch.cuda.is_available():
+        print("PyTorch CUDA/ROCm not available. Exiting.")
+        return
+    device = torch.device("cuda")
+    device_name = torch.cuda.get_device_name(device.index)
+
+    print(f"Running on device: {device_name}")
 
     # Start metrics logger
     metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor, gpu_index=1 if args.gpu_vendor == 'amd' else 0, interval=1)
