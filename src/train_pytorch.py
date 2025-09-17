@@ -15,7 +15,7 @@ def set_seed(seed=42):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-def train_model(model_name, precision, batch_size, epochs):
+def train_model(model_name, precision, batch_size, epochs, device):
     """Main training function for PyTorch models.
     
     Supported model_name values:
