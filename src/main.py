@@ -4,63 +4,25 @@ import pandas as pd
 import os
 import datetime
 import torch
-import tensorflow as tf
 
 from metrics_logger import GpuMetricsLogger
 import train_pytorch
-import train_tensorflow
 
 def main(args):
-    # Setup device
-    if args.framework == 'pytorch':
-        if not torch.cuda.is_available():
-            print("PyTorch CUDA/ROCm not available. Exiting.")
-            return
-        device = torch.device("cuda")
-        device_name = torch.cuda.get_device_name(device.index)
-    elif args.framework == 'tensorflow':
-        gpus = tf.config.list_physical_devices('GPU')
-        if gpus:
-            try:
-                # FIX: Iterate over the list of GPUs and set memory growth for each one.
-                for gpu in gpus:
-                    tf.config.experimental.set_memory_growth(gpu, True)
-                logical_gpus = tf.config.list_logical_devices('GPU')
-                print(f"{len(gpus)} Physical GPUs, {len(logical_gpus)} Logical GPUs")
-            except RuntimeError as e:
-                # Memory growth must be set before GPUs have been initialized
-                print(e)
-            
-            device = '/GPU:0'
-            device_name = gpus[0].name # FIX: Get name from the first GPU object in the list
-    else:
-        print(f"Framework {args.framework} not supported.")
-        return
-
-    print(f"Running on device: {device_name}")
+    
 
     # Start metrics logger
     metrics_logger = GpuMetricsLogger(gpu_vendor=args.gpu_vendor, gpu_index=1 if args.gpu_vendor == 'amd' else 0, interval=1)
     metrics_logger.start()
 
-    # Run training
-    training_results = {}
-    if args.framework == 'pytorch':
-        training_results = train_pytorch.train_model(
-            model_name=args.model,
-            precision=args.precision,
-            batch_size=args.batch_size,
-            epochs=args.epochs,
-            device=device
-        )
-    elif args.framework == 'tensorflow':
-        training_results = train_tensorflow.train_model(
-            model_name=args.model,
-            precision=args.precision,
-            batch_size=args.batch_size,
-            epochs=args.epochs,
-            device_name=device
-        )
+    # Run training   
+    training_results = train_pytorch.train_model(
+        model_name=args.model,
+        precision=args.precision,
+        batch_size=args.batch_size,
+        epochs=args.epochs,
+        device=device
+    )
     
     # Stop metrics logger and get results
     metrics_logger.stop()
@@ -71,7 +33,6 @@ def main(args):
         'timestamp': datetime.datetime.now().isoformat(),
         'gpu_vendor': args.gpu_vendor,
         'gpu_name': device_name,
-        'framework': args.framework,
         'model': args.model,
         'precision': args.precision,
         'batch_size': args.batch_size,
@@ -100,7 +61,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Mixed Precision Benchmark Suite")
     parser.add_argument('--gpu-vendor', type=str, required=True, choices=['nvidia', 'amd'], help='GPU manufacturer')
-    parser.add_argument('--framework', type=str, required=True, choices=['pytorch', 'tensorflow'], help='ML Framework')
     parser.add_argument('--model', type=str, required=True, choices=['resnet50', 'bert-large', 'tacotron2'], help='Model to benchmark')
     parser.add_argument('--precision', type=str, required=True, choices=['fp32', 'fp16', 'bf16'], help='Training precision')
     parser.add_argument('--batch-size', type=int, required=True, help='Batch size for training')
