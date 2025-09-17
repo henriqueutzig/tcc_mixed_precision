@@ -73,7 +73,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Mixed Precision Benchmark Suite")
     parser.add_argument('--gpu-vendor', type=str, required=True, choices=['nvidia', 'amd'], help='GPU manufacturer')
-    parser.add_argument('--model', type=str, required=True, choices=['resnet50', 'bert-large', 'tacotron2'], help='Model to benchmark')
+    parser.add_argument('--model', type=str, required=True, choices=['resnet50', 'bert-large', 'gpt2'], help='Model to benchmark')
     parser.add_argument('--precision', type=str, required=True, choices=['fp32', 'fp16', 'bf16'], help='Training precision')
     parser.add_argument('--batch-size', type=int, required=True, help='Batch size for training')
     parser.add_argument('--epochs', type=int, default=1, help='Number of epochs to run')
