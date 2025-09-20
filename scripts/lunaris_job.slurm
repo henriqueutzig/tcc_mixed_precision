@@ -3,20 +3,50 @@
 #SBATCH --partition=lunaris
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
+#SBATCH --gres=gpu:1
 #SBATCH --time=08:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 
-cp -r -f $HOME/tcc_mixed_precision/src $SCRATCH/tcc_mixed_precision
+set -euo pipefail
 
-cd $SCRATCH
-cd tcc_mixed_precision/
+PROJECT_NAME="tcc_mixed_precision"
+RUN_DIR="$SCRATCH/${PROJECT_NAME}"
+
+echo "Creating run dir: $RUN_DIR"
+mkdir -p "$RUN_DIR"
+
+# Sync source (faster & safer than cp -r -f)
+rsync -a "$HOME/$PROJECT_NAME/src/"      "$RUN_DIR/src/"
+rsync -a "$HOME/$PROJECT_NAME/scripts/"  "$RUN_DIR/scripts/"
+
+if [ ! -e "$RUN_DIR/envs/" ]; then
+    rsync -a "$HOME/$PROJECT_NAME/envs/"  "$RUN_DIR/envs/"
+fi
+
+# Ensure experiment script is executable
+chmod +x "$RUN_DIR/scripts/run_experiments.sh"
+
+cd "$RUN_DIR"
+
 newgrp render <<'EOF'
+
 source  envs/amd/bin/activate
-python3 src/main.py --gpu-vendor amd --model gpt2 --precision fp16 --batch-size 32 --epochs 100 --output-file gpt2_fp16_32batch_100epoch_7900.csv
+
+echo "Python: $(which python)"
+python --version
+
+# Run batch experiments
+bash scripts/run_experiments.sh \
+  --gpu-vendor amd \
+  --repeat 2 \
+  --output-dir results/amd_runs/v2
 EOF
 
-# pip install -r $SCRATCH/tcc_mixed_precision/src/requirements.txt
+# (Optional) single inference benchmark example:
+# python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp16.json
 
-cp gpt2_fp16_32batch_100epoch_7900.csv $HOME/tcc_mixed_precision/data/batch/gpt2_fp16_32batch_100epoch_7900.csv
-cp gpt2_fp16_32batch_100epoch_7900_raw_metrics.csv $HOME/tcc_mixed_precision/data/batch/gpt2_fp16_32batch_100epoch_7900_raw_metrics.csv
+# Sync results back
+rsync -a results "$HOME/$PROJECT_NAME/"
+
+echo "Done."

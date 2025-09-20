@@ -1,18 +1,50 @@
 #!/bin/bash
 #SBATCH --job-name=mixed_precision_nvidia
 #SBATCH --partition=tupi
-#SBATCH --nodelist=tupi2
+#SBATCH --nodelist=tupi1
 #SBATCH --exclude=tupi3,tupi4,tupi5,tupi6
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
-#SBATCH --time=24:00:00
+#SBATCH --gres=gpu:1
+#SBATCH --time=08:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 
-cp -r -f $HOME/tcc_mixed_precision/src $SCRATCH/tcc_mixed_precision
+set -euo pipefail
 
-source $SCRATCH/tcc_mixed_precision/envs/nvidia/bin/activate
+PROJECT_NAME="tcc_mixed_precision"
+RUN_DIR="$SCRATCH/${PROJECT_NAME}"
 
-python3 $SCRATCH/tcc_mixed_precision/src/main.py --gpu-vendor nvidia --model gpt2 --precision fp16 --batch-size 32 --epochs 100 --output-file gpt2_fp16_32batch_100epoch_4090.csv
+echo "Creating run dir: $RUN_DIR"
+mkdir -p "$RUN_DIR"
 
-cp $SCRATCH/gpt2_fp16_32batch_100epoch_4090.csv $HOME/tcc_mixed_precision/data/batch/gpt2_fp16_32batch_100epoch_4090.csv
+# Sync source (faster & safer than cp -r -f)
+rsync -a "$HOME/$PROJECT_NAME/src/"      "$RUN_DIR/src/"
+rsync -a "$HOME/$PROJECT_NAME/scripts/"  "$RUN_DIR/scripts/"
+
+if [ ! -e "$RUN_DIR/envs/" ]; then
+    rsync -a "$HOME/$PROJECT_NAME/envs/"  "$RUN_DIR/envs/"
+fi
+
+# Ensure experiment script is executable
+chmod +x "$RUN_DIR/scripts/run_experiments.sh"
+
+# Activate existing env (not copied)
+source envs/nvidia/bin/activate
+
+echo "Python: $(which python)"
+python --version
+
+# Run batch experiments
+bash scripts/run_experiments.sh \
+  --gpu-vendor nvidia \
+  --repeat 1 \
+  --output-dir results/nvidia_runs
+
+# (Optional) single inference benchmark example:
+# python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp16.json
+
+# Sync results back
+rsync -a results "$HOME/$PROJECT_NAME/"
+
+echo "Done."
