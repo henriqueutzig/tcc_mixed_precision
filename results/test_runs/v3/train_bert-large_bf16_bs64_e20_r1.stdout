@@ -1,0 +1,61 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: bert-large | Precision: bf16 | Batch: 64 ---
+Epoch 1/20
+Epoch 1 time: 40.478s | Last loss: 0.7869
+Epoch 2/20
+Epoch 2 time: 40.109s | Last loss: 0.6956
+Epoch 3/20
+Epoch 3 time: 40.124s | Last loss: 0.7084
+Epoch 4/20
+Epoch 4 time: 40.110s | Last loss: 0.6932
+Epoch 5/20
+Epoch 5 time: 40.120s | Last loss: 0.7375
+Epoch 6/20
+Epoch 6 time: 40.308s | Last loss: 0.7054
+Epoch 7/20
+Epoch 7 time: 40.110s | Last loss: 0.6870
+Epoch 8/20
+Epoch 8 time: 40.028s | Last loss: 0.6977
+Epoch 9/20
+Epoch 9 time: 40.163s | Last loss: 0.6886
+Epoch 10/20
+Epoch 10 time: 40.159s | Last loss: 0.7066
+Epoch 11/20
+Epoch 11 time: 40.340s | Last loss: 0.7041
+Epoch 12/20
+Epoch 12 time: 40.312s | Last loss: 0.6926
+Epoch 13/20
+Epoch 13 time: 40.353s | Last loss: 0.6822
+Epoch 14/20
+Epoch 14 time: 40.093s | Last loss: 0.7000
+Epoch 15/20
+Epoch 15 time: 40.083s | Last loss: 0.6956
+Epoch 16/20
+Epoch 16 time: 40.043s | Last loss: 0.6829
+Epoch 17/20
+Epoch 17 time: 40.196s | Last loss: 0.7153
+Epoch 18/20
+Epoch 18 time: 40.280s | Last loss: 0.6846
+Epoch 19/20
+Epoch 19 time: 40.324s | Last loss: 0.7215
+Epoch 20/20
+Epoch 20 time: 40.277s | Last loss: 0.6977
+
+--- Benchmark Complete ---
+timestamp: 2025-09-19T12:31:29.717871
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: bert-large
+precision: bf16
+batch_size: 64
+epochs: 20
+total_time_sec: 804.0287
+avg_throughput_samples_per_sec: 159.1983
+final_loss: 0.6977
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 13569.9375
+avg_utilization_percent: 98.3129
+avg_power_watts: 269.4049
+Results saved to results/amd_runs/train_bert-large_bf16_bs64_e20_r1.csv
+Raw GPU metrics saved to results/amd_runs/train_bert-large_bf16_bs64_e20_r1_raw_metrics.csv

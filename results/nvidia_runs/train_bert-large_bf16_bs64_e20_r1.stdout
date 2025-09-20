@@ -1,0 +1,61 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: bert-large | Precision: bf16 | Batch: 64 ---
+Epoch 1/20
+Epoch 1 time: 18.077s | Last loss: 0.6904
+Epoch 2/20
+Epoch 2 time: 17.779s | Last loss: 0.7004
+Epoch 3/20
+Epoch 3 time: 17.783s | Last loss: 0.6877
+Epoch 4/20
+Epoch 4 time: 17.807s | Last loss: 0.7143
+Epoch 5/20
+Epoch 5 time: 17.821s | Last loss: 0.7022
+Epoch 6/20
+Epoch 6 time: 17.828s | Last loss: 0.7366
+Epoch 7/20
+Epoch 7 time: 17.827s | Last loss: 0.6971
+Epoch 8/20
+Epoch 8 time: 17.822s | Last loss: 0.7031
+Epoch 9/20
+Epoch 9 time: 18.048s | Last loss: 0.7031
+Epoch 10/20
+Epoch 10 time: 17.835s | Last loss: 0.7220
+Epoch 11/20
+Epoch 11 time: 17.837s | Last loss: 0.7183
+Epoch 12/20
+Epoch 12 time: 17.834s | Last loss: 0.7127
+Epoch 13/20
+Epoch 13 time: 17.836s | Last loss: 0.6950
+Epoch 14/20
+Epoch 14 time: 17.835s | Last loss: 0.7368
+Epoch 15/20
+Epoch 15 time: 17.832s | Last loss: 0.7097
+Epoch 16/20
+Epoch 16 time: 17.832s | Last loss: 0.7084
+Epoch 17/20
+Epoch 17 time: 17.830s | Last loss: 0.7115
+Epoch 18/20
+Epoch 18 time: 17.828s | Last loss: 0.6990
+Epoch 19/20
+Epoch 19 time: 17.827s | Last loss: 0.7030
+Epoch 20/20
+Epoch 20 time: 17.828s | Last loss: 0.6682
+
+--- Benchmark Complete ---
+timestamp: 2025-09-19T17:16:58.174065
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: bert-large
+precision: bf16
+batch_size: 64
+epochs: 20
+total_time_sec: 356.9768
+avg_throughput_samples_per_sec: 358.5668
+final_loss: 0.6682
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 13895.1875
+avg_utilization_percent: 92.5457
+avg_power_watts: 380.9649
+Results saved to results/nvidia_runs/train_bert-large_bf16_bs64_e20_r1.csv
+Raw GPU metrics saved to results/nvidia_runs/train_bert-large_bf16_bs64_e20_r1_raw_metrics.csv

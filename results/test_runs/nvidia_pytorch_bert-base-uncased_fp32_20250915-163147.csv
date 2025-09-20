@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,framework,model,precision,batch_size,gpu_util,memory_used,power_watts
+2025-09-15T16:31:47.572589,nvidia,pytorch,bert-base-uncased,fp32,8,0,353,19.34

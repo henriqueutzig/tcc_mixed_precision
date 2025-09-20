@@ -1,0 +1,51 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: gpt2 | Precision: fp32 | Batch: 32 ---
+Epoch 1/15
+Epoch 1 time: 48.629s | Last loss: 10.8980
+Epoch 2/15
+Epoch 2 time: 48.291s | Last loss: 10.8694
+Epoch 3/15
+Epoch 3 time: 48.316s | Last loss: 10.8664
+Epoch 4/15
+Epoch 4 time: 48.325s | Last loss: 10.8539
+Epoch 5/15
+Epoch 5 time: 48.360s | Last loss: 10.8505
+Epoch 6/15
+Epoch 6 time: 48.335s | Last loss: 10.8540
+Epoch 7/15
+Epoch 7 time: 48.434s | Last loss: 10.8497
+Epoch 8/15
+Epoch 8 time: 48.470s | Last loss: 10.8496
+Epoch 9/15
+Epoch 9 time: 48.487s | Last loss: 10.8471
+Epoch 10/15
+Epoch 10 time: 48.398s | Last loss: 10.8459
+Epoch 11/15
+Epoch 11 time: 48.475s | Last loss: 10.8426
+Epoch 12/15
+Epoch 12 time: 48.565s | Last loss: 10.8420
+Epoch 13/15
+Epoch 13 time: 48.552s | Last loss: 10.8383
+Epoch 14/15
+Epoch 14 time: 48.597s | Last loss: 10.8402
+Epoch 15/15
+Epoch 15 time: 48.633s | Last loss: 10.8394
+
+--- Benchmark Complete ---
+timestamp: 2025-09-19T22:11:24.466943
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: gpt2
+precision: fp32
+batch_size: 32
+epochs: 15
+total_time_sec: 726.8707
+avg_throughput_samples_per_sec: 66.0365
+final_loss: 10.8394
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 10407.4062
+avg_utilization_percent: 98.5305
+avg_power_watts: 270.2809
+Results saved to results/amd_runs/v2/train_gpt2_fp32_bs32_e15_r1.csv
+Raw GPU metrics saved to results/amd_runs/v2/train_gpt2_fp32_bs32_e15_r1_raw_metrics.csv

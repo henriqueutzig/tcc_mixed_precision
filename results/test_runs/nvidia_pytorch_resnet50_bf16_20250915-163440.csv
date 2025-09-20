@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,framework,model,precision,batch_size,gpu_util,memory_used,power_watts
+2025-09-15T16:34:40.885236,nvidia,pytorch,resnet50,bf16,32,0,353,19.735

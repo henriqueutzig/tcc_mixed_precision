@@ -1,0 +1,81 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: resnet50 | Precision: fp32 | Batch: 128 ---
+Epoch 1/30
+Epoch 1 time: 18.283s | Last loss: 2.3151
+Epoch 2/30
+Epoch 2 time: 17.810s | Last loss: 2.3065
+Epoch 3/30
+Epoch 3 time: 17.815s | Last loss: 2.3082
+Epoch 4/30
+Epoch 4 time: 17.816s | Last loss: 2.3042
+Epoch 5/30
+Epoch 5 time: 17.815s | Last loss: 2.3229
+Epoch 6/30
+Epoch 6 time: 17.814s | Last loss: 2.3251
+Epoch 7/30
+Epoch 7 time: 17.828s | Last loss: 2.3137
+Epoch 8/30
+Epoch 8 time: 17.833s | Last loss: 2.3071
+Epoch 9/30
+Epoch 9 time: 17.833s | Last loss: 2.2860
+Epoch 10/30
+Epoch 10 time: 17.835s | Last loss: 2.3343
+Epoch 11/30
+Epoch 11 time: 17.833s | Last loss: 2.3208
+Epoch 12/30
+Epoch 12 time: 17.832s | Last loss: 2.3138
+Epoch 13/30
+Epoch 13 time: 17.833s | Last loss: 2.3207
+Epoch 14/30
+Epoch 14 time: 17.834s | Last loss: 2.3289
+Epoch 15/30
+Epoch 15 time: 17.832s | Last loss: 2.2970
+Epoch 16/30
+Epoch 16 time: 17.831s | Last loss: 2.3037
+Epoch 17/30
+Epoch 17 time: 17.835s | Last loss: 2.3186
+Epoch 18/30
+Epoch 18 time: 17.830s | Last loss: 2.3140
+Epoch 19/30
+Epoch 19 time: 17.831s | Last loss: 2.3027
+Epoch 20/30
+Epoch 20 time: 17.834s | Last loss: 2.3201
+Epoch 21/30
+Epoch 21 time: 17.834s | Last loss: 2.3002
+Epoch 22/30
+Epoch 22 time: 17.831s | Last loss: 2.3093
+Epoch 23/30
+Epoch 23 time: 17.831s | Last loss: 2.3085
+Epoch 24/30
+Epoch 24 time: 17.837s | Last loss: 2.3155
+Epoch 25/30
+Epoch 25 time: 17.832s | Last loss: 2.3170
+Epoch 26/30
+Epoch 26 time: 17.831s | Last loss: 2.3149
+Epoch 27/30
+Epoch 27 time: 17.835s | Last loss: 2.3098
+Epoch 28/30
+Epoch 28 time: 17.830s | Last loss: 2.3050
+Epoch 29/30
+Epoch 29 time: 17.831s | Last loss: 2.2982
+Epoch 30/30
+Epoch 30 time: 17.835s | Last loss: 2.3096
+
+--- Benchmark Complete ---
+timestamp: 2025-09-20T11:50:50.170811
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: resnet50
+precision: fp32
+batch_size: 128
+epochs: 30
+total_time_sec: 535.3560
+avg_throughput_samples_per_sec: 717.2797
+final_loss: 2.3096
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 13599.1875
+avg_utilization_percent: 99.3993
+avg_power_watts: 339.2180
+Results saved to results/nvidia_runs/train_resnet50_fp32_bs128_e30_r1.csv
+Raw GPU metrics saved to results/nvidia_runs/train_resnet50_fp32_bs128_e30_r1_raw_metrics.csv

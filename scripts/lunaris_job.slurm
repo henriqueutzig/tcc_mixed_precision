@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
 #SBATCH --gres=gpu:1
-#SBATCH --time=08:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
 
@@ -29,6 +29,8 @@ chmod +x "$RUN_DIR/scripts/run_experiments.sh"
 
 cd "$RUN_DIR"
 
+rm -rf results/
+
 newgrp render <<'EOF'
 
 source  envs/amd/bin/activate
@@ -40,7 +42,7 @@ python --version
 bash scripts/run_experiments.sh \
   --gpu-vendor amd \
   --repeat 2 \
-  --output-dir results/amd_runs/v2
+  --output-dir results/amd_runs
 EOF
 
 # (Optional) single inference benchmark example:

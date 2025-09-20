@@ -1,0 +1,51 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: gpt2 | Precision: fp16 | Batch: 64 ---
+Epoch 1/15
+Epoch 1 time: 16.061s | Last loss: 10.8903
+Epoch 2/15
+Epoch 2 time: 15.808s | Last loss: 10.8662
+Epoch 3/15
+Epoch 3 time: 15.822s | Last loss: 10.8579
+Epoch 4/15
+Epoch 4 time: 15.805s | Last loss: 10.8552
+Epoch 5/15
+Epoch 5 time: 15.804s | Last loss: 10.8455
+Epoch 6/15
+Epoch 6 time: 15.811s | Last loss: 10.8448
+Epoch 7/15
+Epoch 7 time: 15.811s | Last loss: 10.8449
+Epoch 8/15
+Epoch 8 time: 15.811s | Last loss: 10.8413
+Epoch 9/15
+Epoch 9 time: 15.807s | Last loss: 10.8402
+Epoch 10/15
+Epoch 10 time: 15.807s | Last loss: 10.8424
+Epoch 11/15
+Epoch 11 time: 15.803s | Last loss: 10.8408
+Epoch 12/15
+Epoch 12 time: 15.814s | Last loss: 10.8369
+Epoch 13/15
+Epoch 13 time: 15.805s | Last loss: 10.8368
+Epoch 14/15
+Epoch 14 time: 15.812s | Last loss: 10.8378
+Epoch 15/15
+Epoch 15 time: 15.812s | Last loss: 10.8383
+
+--- Benchmark Complete ---
+timestamp: 2025-09-20T12:18:27.118135
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: gpt2
+precision: fp16
+batch_size: 64
+epochs: 15
+total_time_sec: 237.4016
+avg_throughput_samples_per_sec: 404.3781
+final_loss: 10.8383
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 16963.1875
+avg_utilization_percent: 93.5524
+avg_power_watts: 329.5595
+Results saved to results/nvidia_runs/train_gpt2_fp16_bs64_e15_r1.csv
+Raw GPU metrics saved to results/nvidia_runs/train_gpt2_fp16_bs64_e15_r1_raw_metrics.csv

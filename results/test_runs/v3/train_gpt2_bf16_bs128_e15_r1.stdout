@@ -1,0 +1,3 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: gpt2 | Precision: bf16 | Batch: 128 ---
+Epoch 1/15

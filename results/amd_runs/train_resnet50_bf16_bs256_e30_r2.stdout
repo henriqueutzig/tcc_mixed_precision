@@ -1,0 +1,81 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: resnet50 | Precision: bf16 | Batch: 256 ---
+Epoch 1/30
+Epoch 1 time: 65.530s | Last loss: 2.3025
+Epoch 2/30
+Epoch 2 time: 65.156s | Last loss: 2.3141
+Epoch 3/30
+Epoch 3 time: 65.213s | Last loss: 2.3060
+Epoch 4/30
+Epoch 4 time: 65.252s | Last loss: 2.3141
+Epoch 5/30
+Epoch 5 time: 65.313s | Last loss: 2.3006
+Epoch 6/30
+Epoch 6 time: 65.339s | Last loss: 2.2993
+Epoch 7/30
+Epoch 7 time: 65.366s | Last loss: 2.3002
+Epoch 8/30
+Epoch 8 time: 65.346s | Last loss: 2.3075
+Epoch 9/30
+Epoch 9 time: 65.348s | Last loss: 2.3074
+Epoch 10/30
+Epoch 10 time: 65.350s | Last loss: 2.3109
+Epoch 11/30
+Epoch 11 time: 65.351s | Last loss: 2.3047
+Epoch 12/30
+Epoch 12 time: 65.350s | Last loss: 2.3145
+Epoch 13/30
+Epoch 13 time: 65.353s | Last loss: 2.3109
+Epoch 14/30
+Epoch 14 time: 65.363s | Last loss: 2.3038
+Epoch 15/30
+Epoch 15 time: 65.356s | Last loss: 2.3130
+Epoch 16/30
+Epoch 16 time: 65.374s | Last loss: 2.3080
+Epoch 17/30
+Epoch 17 time: 65.355s | Last loss: 2.3146
+Epoch 18/30
+Epoch 18 time: 65.379s | Last loss: 2.3091
+Epoch 19/30
+Epoch 19 time: 65.366s | Last loss: 2.3108
+Epoch 20/30
+Epoch 20 time: 65.368s | Last loss: 2.3134
+Epoch 21/30
+Epoch 21 time: 65.347s | Last loss: 2.3121
+Epoch 22/30
+Epoch 22 time: 65.339s | Last loss: 2.3065
+Epoch 23/30
+Epoch 23 time: 65.355s | Last loss: 2.3076
+Epoch 24/30
+Epoch 24 time: 65.349s | Last loss: 2.3048
+Epoch 25/30
+Epoch 25 time: 65.367s | Last loss: 2.3046
+Epoch 26/30
+Epoch 26 time: 65.357s | Last loss: 2.3016
+Epoch 27/30
+Epoch 27 time: 65.363s | Last loss: 2.3013
+Epoch 28/30
+Epoch 28 time: 65.350s | Last loss: 2.3122
+Epoch 29/30
+Epoch 29 time: 65.371s | Last loss: 2.3089
+Epoch 30/30
+Epoch 30 time: 65.376s | Last loss: 2.2924
+
+--- Benchmark Complete ---
+timestamp: 2025-09-20T14:26:37.402512
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: resnet50
+precision: bf16
+batch_size: 256
+epochs: 30
+total_time_sec: 1960.4115
+avg_throughput_samples_per_sec: 391.7545
+final_loss: 2.2924
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 13118.4258
+avg_utilization_percent: 99.9133
+avg_power_watts: 272.1515
+Results saved to results/amd_runs/v2/train_resnet50_bf16_bs256_e30_r2.csv
+Raw GPU metrics saved to results/amd_runs/v2/train_resnet50_bf16_bs256_e30_r2_raw_metrics.csv
