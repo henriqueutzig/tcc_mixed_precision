@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 83, in <module>
+    main(args)
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 26, in main
+    training_results = train_pytorch.train_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py", line 56, in train_model
+    from transformers import BertForSequenceClassification, BertConfig
+ModuleNotFoundError: No module named 'transformers'

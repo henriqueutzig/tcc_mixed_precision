@@ -1,0 +1,3 @@
+Running on device: NVIDIA L40S
+pynvml not found. Please install it for NVIDIA GPU monitoring.
+--- Training PyTorch Model: gpt2 | Precision: fp16 | Batch: 64 ---

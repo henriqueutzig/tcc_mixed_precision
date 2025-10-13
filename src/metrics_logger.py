@@ -91,6 +91,10 @@ class GpuMetricsLogger:
                 'peak_memory_mb': 0,
                 'avg_utilization_percent': 0,
                 'avg_power_watts': 0
+            }, {
+                'peak_memory_mb': 0,
+                'avg_utilization_percent': 0,
+                'avg_power_watts': 0
             }
         
         return {
