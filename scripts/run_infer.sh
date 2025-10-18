@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 # Default settings (override via CLI flags)
-GPU_VENDOR="amd"
+GPU_VENDOR="nvidia"
 NUM_BATCHES=""          # If set, overrides per-model num_batches
 REPEAT=1                # How many times to repeat each combo
 OUTPUT_DIR="data/inference"

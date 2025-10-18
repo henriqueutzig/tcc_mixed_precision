@@ -1,0 +1,1 @@
+{"model":"gpt2","precision":"fp32","batch_size":768,"throughput_samples_per_sec":0,"mean_batch_latency_ms":0,"total_inference_time_sec":0,"success":0}

@@ -1,0 +1,18 @@
+{
+  "model": "gpt2",
+  "precision": "fp32",
+  "pretrained": true,
+  "device": "cuda",
+  "batch_size": 16,
+  "num_batches": 50,
+  "warmup_batches": 5,
+  "total_samples": 800,
+  "total_inference_time_sec": 7.6237781047821045,
+  "throughput_samples_per_sec": 104.93484844452524,
+  "mean_batch_latency_ms": 152.42340564727783,
+  "p50_latency_ms": 151.81350708007812,
+  "p90_latency_ms": 152.79381275177002,
+  "p95_latency_ms": 153.08036804199222,
+  "p99_latency_ms": 173.1748723983764,
+  "peak_memory_mb": 1598.765625
+,"success":1}

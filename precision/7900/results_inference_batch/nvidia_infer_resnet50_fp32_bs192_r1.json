@@ -1,0 +1,18 @@
+{
+  "model": "resnet50",
+  "precision": "fp32",
+  "pretrained": true,
+  "device": "cuda",
+  "batch_size": 192,
+  "num_batches": 50,
+  "warmup_batches": 5,
+  "total_samples": 9600,
+  "total_inference_time_sec": 7.628248453140259,
+  "throughput_samples_per_sec": 1258.4802473296536,
+  "mean_batch_latency_ms": 152.54472732543945,
+  "p50_latency_ms": 152.4665355682373,
+  "p90_latency_ms": 153.26600074768066,
+  "p95_latency_ms": 153.47659587860107,
+  "p99_latency_ms": 153.6514592170715,
+  "peak_memory_mb": 2120.71044921875
+,"success":1}
