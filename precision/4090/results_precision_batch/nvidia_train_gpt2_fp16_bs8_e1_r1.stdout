@@ -1,0 +1,23 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: gpt2 | Precision: fp16 | Batch: 8 ---
+Epoch 1/1
+Epoch 1 time: 5.636s | Last loss: 10.9637
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T10:53:16.706902
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: gpt2
+precision: fp16
+batch_size: 8
+epochs: 1
+total_time_sec: 5.6368
+avg_throughput_samples_per_sec: 141.9255
+final_loss: 10.9637
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 4323.1875
+avg_utilization_percent: 30.6667
+avg_power_watts: 107.7478
+Results saved to results_precision_batch/nvidia_train_gpt2_fp16_bs8_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_gpt2_fp16_bs8_e1_r1_raw_metrics.csv

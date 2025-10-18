@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,gpu_name,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,skipped_steps,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-10-18T09:00:08.974812,nvidia,NVIDIA L40S,bert-large,fp16,1,1,10.05576229095459,9.944546928078491,0.763671875,0,0,7621.75,33.86666666666667,141.00846666666666

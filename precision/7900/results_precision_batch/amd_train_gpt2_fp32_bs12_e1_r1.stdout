@@ -1,0 +1,23 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: gpt2 | Precision: fp32 | Batch: 12 ---
+Epoch 1/1
+Epoch 1 time: 19.047s | Last loss: 10.9294
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T10:35:01.361862
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: gpt2
+precision: fp32
+batch_size: 12
+epochs: 1
+total_time_sec: 19.0470
+avg_throughput_samples_per_sec: 63.0020
+final_loss: 10.9294
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 5186.7344
+avg_utilization_percent: 67.2222
+avg_power_watts: 191.8148
+Results saved to results_precision_batch/amd_train_gpt2_fp32_bs12_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/amd_train_gpt2_fp32_bs12_e1_r1_raw_metrics.csv

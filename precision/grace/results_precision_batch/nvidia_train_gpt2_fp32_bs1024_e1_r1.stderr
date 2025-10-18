@@ -1,0 +1,65 @@
+/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py:89: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=scaler_enabled)
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 83, in <module>
+    main(args)
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 26, in main
+    training_results = train_pytorch.train_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py", line 107, in train_model
+    output = model(**batch_inputs, labels=labels)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 1068, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 925, in forward
+    outputs = block(
+              ^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 449, in forward
+    feed_forward_hidden_states = self.mlp(hidden_states)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 375, in forward
+    hidden_states = self.act(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/transformers/activations.py", line 62, in forward
+    return 0.5 * input * (1.0 + torch.tanh(math.sqrt(2.0 / math.pi) * (input + 0.044715 * torch.pow(input, 3.0))))
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU 0 has a total capacity of 44.52 GiB of which 1.47 GiB is free. Including non-PyTorch memory, this process has 43.05 GiB memory in use. Of the allocated memory 42.52 GiB is allocated by PyTorch, and 40.41 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

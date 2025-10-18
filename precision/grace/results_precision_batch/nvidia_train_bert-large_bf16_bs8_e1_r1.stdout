@@ -1,0 +1,23 @@
+Running on device: NVIDIA L40S
+--- Training PyTorch Model: bert-large | Precision: bf16 | Batch: 8 ---
+Epoch 1/1
+Epoch 1 time: 10.025s | Last loss: 1.2710
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T09:06:40.335452
+gpu_vendor: nvidia
+gpu_name: NVIDIA L40S
+model: bert-large
+precision: bf16
+batch_size: 8
+epochs: 1
+total_time_sec: 10.0259
+avg_throughput_samples_per_sec: 79.7931
+final_loss: 1.2710
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 7575.7500
+avg_utilization_percent: 38.4000
+avg_power_watts: 162.5903
+Results saved to results_precision_batch/nvidia_train_bert-large_bf16_bs8_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_bert-large_bf16_bs8_e1_r1_raw_metrics.csv

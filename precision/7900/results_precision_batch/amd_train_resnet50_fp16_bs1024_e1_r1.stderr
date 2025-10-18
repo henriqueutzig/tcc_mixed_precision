@@ -1,0 +1,54 @@
+/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py:89: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=scaler_enabled)
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 82, in <module>
+    main(args)
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 25, in main
+    training_results = train_pytorch.train_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py", line 110, in train_model
+    output = model(batch_inputs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/timm/models/resnet.py", line 724, in forward
+    x = self.forward_features(x)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/timm/models/resnet.py", line 701, in forward_features
+    x = self.layer1(x)
+        ^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/container.py", line 244, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/timm/models/resnet.py", line 230, in forward
+    x = self.bn3(x)
+        ^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+           ^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/amd/lib/python3.11/site-packages/torch/nn/functional.py", line 2817, in batch_norm
+    return torch.batch_norm(
+           ^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: HIP out of memory. Tried to allocate 1.53 GiB. GPU 0 has a total capacity of 19.98 GiB of which 0 bytes is free. Of the allocated memory 19.71 GiB is allocated by PyTorch, and 27.56 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

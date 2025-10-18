@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,gpu_name,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,skipped_steps,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-10-18T11:05:49.117079,nvidia,NVIDIA GeForce RTX 4090,bert-large,fp32,4,1,8.692439079284668,46.01700355349714,1.0785892009735107,0,0,7311.1875,25,112.34772222222222

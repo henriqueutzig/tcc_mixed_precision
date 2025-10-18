@@ -1,0 +1,3 @@
+Running on device: NVIDIA L40S
+--- Training PyTorch Model: gpt2 | Precision: fp32 | Batch: 768 ---
+Epoch 1/1

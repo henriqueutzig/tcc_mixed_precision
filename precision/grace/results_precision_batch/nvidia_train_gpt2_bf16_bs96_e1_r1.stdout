@@ -1,0 +1,23 @@
+Running on device: NVIDIA L40S
+--- Training PyTorch Model: gpt2 | Precision: bf16 | Batch: 96 ---
+Epoch 1/1
+Epoch 1 time: 27.454s | Last loss: 10.8936
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T09:19:31.269503
+gpu_vendor: nvidia
+gpu_name: NVIDIA L40S
+model: gpt2
+precision: bf16
+batch_size: 96
+epochs: 1
+total_time_sec: 27.4544
+avg_throughput_samples_per_sec: 349.6711
+final_loss: 10.8936
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 24667.7500
+avg_utilization_percent: 89.2333
+avg_power_watts: 276.2807
+Results saved to results_precision_batch/nvidia_train_gpt2_bf16_bs96_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_gpt2_bf16_bs96_e1_r1_raw_metrics.csv

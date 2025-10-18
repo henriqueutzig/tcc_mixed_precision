@@ -1,0 +1,23 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: bert-large | Precision: bf16 | Batch: 48 ---
+Epoch 1/1
+Epoch 1 time: 31.321s | Last loss: 0.6770
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T10:22:02.653126
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: bert-large
+precision: bf16
+batch_size: 48
+epochs: 1
+total_time_sec: 31.3216
+avg_throughput_samples_per_sec: 153.2491
+final_loss: 0.6770
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 11383.8828
+avg_utilization_percent: 77.2564
+avg_power_watts: 218.1538
+Results saved to results_precision_batch/amd_train_bert-large_bf16_bs48_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/amd_train_bert-large_bf16_bs48_e1_r1_raw_metrics.csv

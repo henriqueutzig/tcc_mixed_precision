@@ -1,3 +1,51 @@
 Running on device: NVIDIA L40S
-pynvml not found. Please install it for NVIDIA GPU monitoring.
 --- Training PyTorch Model: gpt2 | Precision: fp16 | Batch: 64 ---
+Epoch 1/15
+Epoch 1 time: 18.793s | Last loss: 10.8948
+Epoch 2/15
+Epoch 2 time: 18.555s | Last loss: 10.8704
+Epoch 3/15
+Epoch 3 time: 18.568s | Last loss: 10.8655
+Epoch 4/15
+Epoch 4 time: 18.554s | Last loss: 10.8593
+Epoch 5/15
+Epoch 5 time: 18.543s | Last loss: 10.8511
+Epoch 6/15
+Epoch 6 time: 18.533s | Last loss: 10.8546
+Epoch 7/15
+Epoch 7 time: 18.530s | Last loss: 10.8550
+Epoch 8/15
+Epoch 8 time: 18.537s | Last loss: 10.8490
+Epoch 9/15
+Epoch 9 time: 18.534s | Last loss: 10.8527
+Epoch 10/15
+Epoch 10 time: 18.529s | Last loss: 10.8552
+Epoch 11/15
+Epoch 11 time: 18.529s | Last loss: 10.8550
+Epoch 12/15
+Epoch 12 time: 18.535s | Last loss: 10.8515
+Epoch 13/15
+Epoch 13 time: 18.528s | Last loss: 10.8504
+Epoch 14/15
+Epoch 14 time: 18.531s | Last loss: 10.8546
+Epoch 15/15
+Epoch 15 time: 18.525s | Last loss: 10.8558
+
+--- Benchmark Complete ---
+timestamp: 2025-10-17T08:18:28.094271
+gpu_vendor: nvidia
+gpu_name: NVIDIA L40S
+model: gpt2
+precision: fp16
+batch_size: 64
+epochs: 15
+total_time_sec: 278.3317
+avg_throughput_samples_per_sec: 344.9122
+final_loss: 10.8558
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 17101.7500
+avg_utilization_percent: 97.4342
+avg_power_watts: 302.0506
+Results saved to results/ai_nvidia_runs/train_gpt2_fp16_bs64_e15_r1.csv
+Raw GPU metrics saved to results/ai_nvidia_runs/train_gpt2_fp16_bs64_e15_r1_raw_metrics.csv

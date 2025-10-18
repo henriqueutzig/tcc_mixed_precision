@@ -1,0 +1,4 @@
+Running on device: NVIDIA L40S
+pyrsmi not found. Please install it for AMD GPU monitoring.
+--- Training PyTorch Model: resnet50 | Precision: fp32 | Batch: 512 ---
+Epoch 1/1

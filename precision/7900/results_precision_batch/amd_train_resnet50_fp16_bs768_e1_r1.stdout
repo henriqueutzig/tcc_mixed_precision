@@ -1,0 +1,3 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: resnet50 | Precision: fp16 | Batch: 768 ---
+Epoch 1/1

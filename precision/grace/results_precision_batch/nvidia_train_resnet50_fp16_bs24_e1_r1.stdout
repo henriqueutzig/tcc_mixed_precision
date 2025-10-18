@@ -1,0 +1,23 @@
+Running on device: NVIDIA L40S
+--- Training PyTorch Model: resnet50 | Precision: fp16 | Batch: 24 ---
+Epoch 1/1
+Epoch 1 time: 3.985s | Last loss: 2.3292
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T08:37:00.524748
+gpu_vendor: nvidia
+gpu_name: NVIDIA L40S
+model: resnet50
+precision: fp16
+batch_size: 24
+epochs: 1
+total_time_sec: 3.9852
+avg_throughput_samples_per_sec: 602.2319
+final_loss: 2.3292
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 2613.7500
+avg_utilization_percent: 31.2000
+avg_power_watts: 159.5006
+Results saved to results_precision_batch/nvidia_train_resnet50_fp16_bs24_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_resnet50_fp16_bs24_e1_r1_raw_metrics.csv

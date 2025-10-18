@@ -1,0 +1,15 @@
+/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 6, in <module>
+    import torch
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/__init__.py", line 2486, in <module>
+    from torch import _meta_registrations
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/_meta_registrations.py", line 6636, in <module>
+    activate_meta()
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/_meta_registrations.py", line 6633, in activate_meta
+    _meta_lib_dont_use_me_use_register_meta.impl(op_overload, fn)
+  File "/scratch/hutzig/tcc_mixed_precision/envs/ai_nvidia/lib/python3.11/site-packages/torch/library.py", line 312, in impl
+    if torch._C._dispatch_has_kernel_for_dispatch_key(
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

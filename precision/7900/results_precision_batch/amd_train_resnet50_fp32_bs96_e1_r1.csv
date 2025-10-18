@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,gpu_name,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,skipped_steps,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-10-18T08:45:48.904261,amd,Radeon RX 7900 XT,resnet50,fp32,96,1,131.4920825958252,73.0081979879205,2.3115270137786865,0,0,9720.12109375,96.18181818181819,244.62121212121212

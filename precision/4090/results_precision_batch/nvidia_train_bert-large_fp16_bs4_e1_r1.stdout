@@ -1,0 +1,23 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: bert-large | Precision: fp16 | Batch: 4 ---
+Epoch 1/1
+Epoch 1 time: 10.992s | Last loss: 0.6804
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T11:13:14.669105
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: bert-large
+precision: fp16
+batch_size: 4
+epochs: 1
+total_time_sec: 10.9938
+avg_throughput_samples_per_sec: 36.3841
+final_loss: 0.6804
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 7517.1875
+avg_utilization_percent: 22.7000
+avg_power_watts: 94.5380
+Results saved to results_precision_batch/nvidia_train_bert-large_fp16_bs4_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_bert-large_fp16_bs4_e1_r1_raw_metrics.csv

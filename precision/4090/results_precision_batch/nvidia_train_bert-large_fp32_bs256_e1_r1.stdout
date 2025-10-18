@@ -1,0 +1,3 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: bert-large | Precision: fp32 | Batch: 256 ---
+Epoch 1/1

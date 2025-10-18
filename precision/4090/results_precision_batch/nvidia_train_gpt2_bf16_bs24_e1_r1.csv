@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,gpu_name,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,skipped_steps,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-10-18T10:56:59.308008,nvidia,NVIDIA GeForce RTX 4090,gpt2,bf16,24,1,6.813955307006836,352.21833602754396,10.913256645202637,0,0,7997.1875,51.18181818181818,172.3070909090909

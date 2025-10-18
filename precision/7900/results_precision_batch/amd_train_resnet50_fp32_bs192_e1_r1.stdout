@@ -1,0 +1,23 @@
+Running on device: Radeon RX 7900 XT
+--- Training PyTorch Model: resnet50 | Precision: fp32 | Batch: 192 ---
+Epoch 1/1
+Epoch 1 time: 251.905s | Last loss: 2.3130
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T08:40:22.523091
+gpu_vendor: amd
+gpu_name: Radeon RX 7900 XT
+model: resnet50
+precision: fp32
+batch_size: 192
+epochs: 1
+total_time_sec: 251.9053
+avg_throughput_samples_per_sec: 76.2191
+final_loss: 2.3130
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 18766.2031
+avg_utilization_percent: 96.5415
+avg_power_watts: 243.7036
+Results saved to results_precision_batch/amd_train_resnet50_fp32_bs192_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/amd_train_resnet50_fp32_bs192_e1_r1_raw_metrics.csv

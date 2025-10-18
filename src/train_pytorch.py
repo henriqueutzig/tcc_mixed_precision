@@ -83,6 +83,8 @@ def train_model(model_name, precision, batch_size, epochs, device, num_batches=1
                 # Next-token prediction: labels are input_ids shifted (simplified synthetic)
                 labels = data.clone()
                 yield {'input_ids': data, 'attention_mask': (data != eos_id).long()}, labels
+    elif model_name == '': 
+        pass  # Placeholder for additional models
     else:
         raise ValueError(f"Unsupported model: {model_name}")
 

@@ -1,0 +1,2 @@
+timestamp,gpu_vendor,gpu_name,model,precision,batch_size,epochs,total_time_sec,avg_throughput_samples_per_sec,final_loss,nan_inf_count,skipped_steps,peak_memory_mb,avg_utilization_percent,avg_power_watts
+2025-10-18T09:11:29.399500,nvidia,NVIDIA L40S,gpt2,fp32,4,1,4.081270694732666,98.00869139021935,10.959823608398438,0,0,4137.75,39.42857142857143,155.2227142857143

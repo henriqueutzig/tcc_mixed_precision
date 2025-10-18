@@ -1,0 +1,2 @@
+model,precision,batch_size,elapsed_sec,throughput,success
+bert-large,bf16,128,0,0,0

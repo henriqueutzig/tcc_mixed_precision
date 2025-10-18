@@ -1,0 +1,54 @@
+/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/cuda/__init__.py:54: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 82, in <module>
+    main(args)
+  File "/scratch/hutzig/tcc_mixed_precision/src/main.py", line 25, in main
+    training_results = train_pytorch.train_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/src/train_pytorch.py", line 113, in train_model
+    output = model(batch_inputs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/timm/models/resnet.py", line 724, in forward
+    x = self.forward_features(x)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/timm/models/resnet.py", line 702, in forward_features
+    x = self.layer2(x)
+        ^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/timm/models/resnet.py", line 220, in forward
+    x = self.bn1(x)
+        ^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/batchnorm.py", line 175, in forward
+    return F.batch_norm(
+           ^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/functional.py", line 2482, in batch_norm
+    return torch.batch_norm(
+           ^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 784.00 MiB. GPU 0 has a total capacity of 23.65 GiB of which 782.81 MiB is free. Including non-PyTorch memory, this process has 22.87 GiB memory in use. Of the allocated memory 22.00 GiB is allocated by PyTorch, and 425.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

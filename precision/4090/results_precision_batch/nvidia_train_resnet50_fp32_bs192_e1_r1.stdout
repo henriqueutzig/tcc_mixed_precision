@@ -1,0 +1,23 @@
+Running on device: NVIDIA GeForce RTX 4090
+--- Training PyTorch Model: resnet50 | Precision: fp32 | Batch: 192 ---
+Epoch 1/1
+Epoch 1 time: 27.611s | Last loss: 2.3184
+
+--- Benchmark Complete ---
+timestamp: 2025-10-18T08:40:33.876703
+gpu_vendor: nvidia
+gpu_name: NVIDIA GeForce RTX 4090
+model: resnet50
+precision: fp32
+batch_size: 192
+epochs: 1
+total_time_sec: 27.6121
+avg_throughput_samples_per_sec: 695.3465
+final_loss: 2.3184
+nan_inf_count: 0
+skipped_steps: 0
+peak_memory_mb: 19169.1875
+avg_utilization_percent: 93.3793
+avg_power_watts: 309.2316
+Results saved to results_precision_batch/nvidia_train_resnet50_fp32_bs192_e1_r1.csv
+Raw GPU metrics saved to results_precision_batch/nvidia_train_resnet50_fp32_bs192_e1_r1_raw_metrics.csv
