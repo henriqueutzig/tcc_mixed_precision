@@ -1,0 +1,18 @@
+{
+  "model": "bert-large",
+  "precision": "fp32",
+  "pretrained": true,
+  "device": "cuda",
+  "batch_size": 192,
+  "num_batches": 50,
+  "warmup_batches": 5,
+  "total_samples": 9600,
+  "total_inference_time_sec": 12.120929956436157,
+  "throughput_samples_per_sec": 792.0184370756507,
+  "mean_batch_latency_ms": 242.31909275054932,
+  "p50_latency_ms": 242.2802448272705,
+  "p90_latency_ms": 243.7802791595459,
+  "p95_latency_ms": 244.10486221313477,
+  "p99_latency_ms": 244.28635120391846,
+  "peak_memory_mb": 2343.662109375
+,"success":1}
