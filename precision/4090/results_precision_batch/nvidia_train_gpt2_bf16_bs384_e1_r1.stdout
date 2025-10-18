@@ -1,3 +1,0 @@
-Running on device: NVIDIA GeForce RTX 4090
---- Training PyTorch Model: gpt2 | Precision: bf16 | Batch: 384 ---
-Epoch 1/1
