@@ -1,0 +1,30 @@
+/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/cuda/__init__.py:54: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Traceback (most recent call last):
+  File "/scratch/hutzig/tcc_mixed_precision/src/inference_pytorch.py", line 196, in <module>
+    main()
+  File "/scratch/hutzig/tcc_mixed_precision/src/inference_pytorch.py", line 175, in main
+    metrics = benchmark_inference(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/hutzig/tcc_mixed_precision/src/inference_pytorch.py", line 112, in benchmark_inference
+    _ = model(**batch)
+        ^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 1092, in forward
+    logits = self.lm_head(hidden_states[:, slice_indices, :])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/hutzig/tcc_mixed_precision/envs/nvidia/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.20 GiB. GPU 0 has a total capacity of 23.65 GiB of which 5.30 GiB is free. Including non-PyTorch memory, this process has 18.33 GiB memory in use. Of the allocated memory 16.58 GiB is allocated by PyTorch, and 1.31 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
