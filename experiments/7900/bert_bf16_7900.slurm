@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=mixed_precision_amd
+#SBATCH --job-name=bert_bf16_bs96_7900
 #SBATCH --partition=lunaris
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
@@ -7,6 +7,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
+
 
 set -euo pipefail
 
@@ -29,20 +30,23 @@ chmod +x "$RUN_DIR/scripts/run_experiments.sh"
 
 cd "$RUN_DIR"
 
-rm -rf results/
-
 newgrp render <<'EOF'
 
-source  envs/amd/bin/activate
+# Activate existing env (not copied)
+source envs/amd/bin/activate
 
 echo "Python: $(which python)"
 python --version
 
-# Run batch experiments
-bash scripts/run_experiments.sh \
-  --gpu-vendor amd \
-  --repeat 2 \
-  --output-dir results/amd_runs
+for experiment_num in $(seq 1 10); do
+    echo "Running BERT experiment number: $experiment_num"
+    python src/main.py --gpu-vendor amd \
+      --model bert-large --precision bf16 \
+      --batch-size 96 --epochs 100 \
+      --output-file data/bert_bf16_bs96_7900_10e.csv --experiment-num $experiment_num
+    rsync -a *.json "$HOME/$PROJECT_NAME/epoch_metrics/"
+done
+
 EOF
 
 # (Optional) single inference benchmark example:

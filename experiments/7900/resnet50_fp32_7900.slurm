@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=mixed_precision_amd
+#SBATCH --job-name=resnet50_fp32_bs128_7900
 #SBATCH --partition=lunaris
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
@@ -7,6 +7,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
+
 
 set -euo pipefail
 
@@ -29,24 +30,27 @@ chmod +x "$RUN_DIR/scripts/run_experiments.sh"
 
 cd "$RUN_DIR"
 
-rm -rf results/
-
 newgrp render <<'EOF'
 
-source  envs/amd/bin/activate
+# Activate existing env (not copied)
+source envs/amd/bin/activate
 
 echo "Python: $(which python)"
 python --version
 
-# Run batch experiments
-bash scripts/run_experiments.sh \
-  --gpu-vendor amd \
-  --repeat 2 \
-  --output-dir results/amd_runs
+for experiment_num in $(seq 1 10); do
+    echo "Running resnet50 experiment number: $experiment_num"
+    python src/main.py --gpu-vendor amd \
+      --model resnet50 --precision fp32 \
+      --batch-size 128 --epochs 100 \
+      --output-file data/resnet50_fp32_bs128_7900_10e.csv --experiment-num $experiment_num
+    rsync -a *.json "$HOME/$PROJECT_NAME/epoch_metrics/"
+done
+
 EOF
 
 # (Optional) single inference benchmark example:
-# python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp16.json
+# python src/inference_pytorch.py --model resnet50 --precision fp32 --batch-size 128 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp32.json
 
 # Sync results back
 rsync -a results "$HOME/$PROJECT_NAME/"
