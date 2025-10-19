@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=mixed_precision_nvidia
+#SBATCH --job-name=bert_fp16_bs128_4090
 #SBATCH --partition=tupi
-#SBATCH --nodelist=tupi1
+#SBATCH --nodelist=tupi1,tupi2
 #SBATCH --exclude=tupi3,tupi4,tupi5,tupi6
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
@@ -29,17 +29,21 @@ fi
 # Ensure experiment script is executable
 chmod +x "$RUN_DIR/scripts/run_experiments.sh"
 
+cd "$RUN_DIR"
 # Activate existing env (not copied)
 source envs/nvidia/bin/activate
 
 echo "Python: $(which python)"
 python --version
 
-# Run batch experiments
-bash scripts/run_experiments.sh \
-  --gpu-vendor nvidia \
-  --repeat 1 \
-  --output-dir results/nvidia_runs
+for experiment_num in $(seq 1 10); do
+    echo "Running BERT experiment number: $experiment_num"
+    python src/main.py --gpu-vendor nvidia \
+      --model bert-large --precision fp16 \
+      --batch-size 128 --epochs 100 \
+      --output-file data/bert_fp16_bs128_4090_10e.csv --experiment-num $experiment_num
+    rsync -a *.json "$HOME/$PROJECT_NAME/epoch_metrics/"
+done
 
 # (Optional) single inference benchmark example:
 # python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp16.json

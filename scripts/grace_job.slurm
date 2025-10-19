@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=mixed_precision_server_nvidia
 #SBATCH --partition=grace
-#SBATCH --nodes=1
-#SBATCH --ntasks=16
 #SBATCH --gres=gpu:1
+#SBATCH --nodes=1
 #SBATCH --time=24:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
@@ -29,7 +28,7 @@ ARCH=$(uname -m)
 echo "Detected architecture: $ARCH"
 
 if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-    REQUIREMENTS_FILE="scripts/ai_arm.txt"
+    REQUIREMENTS_FILE="scripts/ai.txt"
     echo "Using ARM-compatible requirements"
 else
     REQUIREMENTS_FILE="scripts/ai.txt"
@@ -40,20 +39,24 @@ if [ ! -e "$RUN_DIR/envs/ai_nvidia" ]; then
     cd "$RUN_DIR"
     python3 -m venv envs/ai_nvidia
     source envs/ai_nvidia/bin/activate
-    
+
     # Upgrade pip first
     pip install --upgrade pip
-    
+
     # Install PyTorch for ARM (ROCm/CPU fallback)
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
         pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
     fi
-    
+
     pip install -r "$REQUIREMENTS_FILE"
 else
     cd "$RUN_DIR"
     source envs/ai_nvidia/bin/activate
+    # pip install -r "$REQUIREMENTS_FILE"
 fi
+
+# pip install --extra-index-url https://pypi.nvidia.com nvidia-cudnn-cu12
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # Ensure experiment script is executable
 chmod +x "$RUN_DIR/scripts/run_experiments.sh"
