@@ -220,7 +220,8 @@ def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, 
 
         # Append to log file
         try:
-            with open(f"epoch_metrics_{gpu_vendor}_{model}_bs{batch_size}_pr{precision}_e{epochs}.json", "a") as f:
+            safe_gpu_name = gpu_name.replace(" ", "_") if gpu_name else "unknown"
+            with open(f"epoch_metrics_{safe_gpu_name}_{model}_pr{precision}_bs{batch_size}_e{epochs}.json", "a") as f:
                 f.write(str(epoch_log) + "\n")
         except Exception:
             pass
