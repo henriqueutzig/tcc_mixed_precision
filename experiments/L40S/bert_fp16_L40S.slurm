@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=mixed_precision_server_nvidia
+#SBATCH --job-name=bert_fp16_bs256_L40s
 #SBATCH --partition=grace
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
@@ -56,7 +56,6 @@ else
 fi
 
 # Ensure experiment script is executable
-chmod +x "$RUN_DIR/scripts/run_experiments.sh"
 
 echo "Python: $(which python)"
 python --version
@@ -68,11 +67,14 @@ python -c "import pandas; print(f'Pandas version: {pandas.__version__}')"
 python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
 python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 
-# Run batch experiments
-bash scripts/run_experiments.sh \
-  --gpu-vendor nvidia \
-  --repeat 1 \
-  --output-dir results/ai_nvidia_runs
+for experiment_num in $(seq 1 10); do
+    echo "Running BERT experiment number: $experiment_num"
+    python src/main.py --gpu-vendor nvidia \
+      --model bert-large --precision fp16 \
+      --batch-size 256 --epochs 100 \
+      --output-file data/bert_fp16_bs256_L40s_10e.csv --experiment-num $experiment_num
+    rsync -a *.json "$HOME/$PROJECT_NAME/epoch_metrics/"
+done
 
 # Sync results back
 rsync -a results "$HOME/$PROJECT_NAME/"
