@@ -28,12 +28,14 @@ def main(args):
         precision=args.precision,
         batch_size=args.batch_size,
         epochs=args.epochs,
-        device=device
+        device=device,
+        gpu_vendor=args.gpu_vendor,
+        experiment_num=args.experiment_num
     )
     
     # Stop metrics logger and get results
     metrics_logger.stop()
-    hardware_results, raw_gpu_metrics = metrics_logger.get_results()
+    hardware_results = metrics_logger.get_results()
 
     # Combine results
     all_results = {
@@ -64,11 +66,6 @@ def main(args):
         print(f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}")
     print(f"Results saved to {args.output_file}")
 
-    df = pd.DataFrame(raw_gpu_metrics)
-    raw_metrics_file = args.output_file.replace('.csv', f'_raw_metrics.csv')
-    df.to_csv(raw_metrics_file, index=False)
-    print(f"Raw GPU metrics saved to {raw_metrics_file}")
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Mixed Precision Benchmark Suite")
@@ -78,6 +75,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch-size', type=int, required=True, help='Batch size for training')
     parser.add_argument('--epochs', type=int, default=1, help='Number of epochs to run')
     parser.add_argument('--output-file', type=str, default='benchmark_results.csv', help='File to save results')
+    parser.add_argument('--experiment-num', type=int, default=0, help='Experiment number identifier')
     
     args = parser.parse_args()
     main(args)

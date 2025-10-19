@@ -219,7 +219,7 @@ def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, 
 
         # Append to log file
         try:
-            with open(f"epoch_metrics_{model}_bs{batch_size}_pr{precision}_e{epochs}.json", "a") as f:
+            with open(f"epoch_metrics_{gpu_vendor}_{model}_bs{batch_size}_pr{precision}_e{epochs}.json", "a") as f:
                 f.write(str(epoch_log) + "\n")
         except Exception:
             pass
