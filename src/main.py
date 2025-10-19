@@ -30,7 +30,8 @@ def main(args):
         epochs=args.epochs,
         device=device,
         gpu_vendor=args.gpu_vendor,
-        experiment_num=args.experiment_num
+        experiment_num=args.experiment_num,
+        gpu_name=device_name
     )
     
     # Stop metrics logger and get results

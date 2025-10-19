@@ -15,7 +15,7 @@ def set_seed(seed=42):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-def train_model(model_name, precision, batch_size, epochs, device, num_batches=100, gpu_vendor=None, experiment_num=None):
+def train_model(model_name, precision, batch_size, epochs, device, num_batches=100, gpu_vendor=None, experiment_num=None, gpu_name=None):
     """Main training function for PyTorch models.
 
     Supported model_name values:
@@ -135,7 +135,7 @@ def train_model(model_name, precision, batch_size, epochs, device, num_batches=1
         log_epoch_metrics(batch_size=batch_size, num_batches=num_batches, epoch=epoch,
                           epoch_time=epoch_time, loss_history=loss_history,
                           nan_inf_count=nan_inf_count, skipped_steps=skipped_steps, device=device,
-                          model=model_name, precision=precision, epochs=epochs, gpu_vendor=gpu_vendor, experiment_num=experiment_num)
+                          model=model_name, precision=precision, epochs=epochs, gpu_vendor=gpu_vendor, experiment_num=experiment_num, gpu_name=gpu_name)
 
     torch.cuda.synchronize()
     total_time = time.time() - start_time
@@ -150,7 +150,7 @@ def train_model(model_name, precision, batch_size, epochs, device, num_batches=1
         'loss_history': loss_history
     }
 
-def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, nan_inf_count, skipped_steps, device, model, precision, epochs, gpu_vendor, experiment_num):
+def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, nan_inf_count, skipped_steps, device, model, precision, epochs, gpu_vendor, experiment_num, gpu_name):
     # Per-epoch performance / GPU efficiency logging
         if 'epoch_logs' not in locals():
             epoch_logs = []
@@ -182,9 +182,9 @@ def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, 
             try:
                 from pyrsmi import rocml
                 rocml.smi_initialize()
-                gpu_index = torch.cuda.current_device()
+                gpu_index = 1
                 gpu_util = rocml.smi_get_device_utilization(gpu_index)  # %
-                mem_util = rocml.smi_get_device_memory_used(self.gpu_index)
+                mem_util = rocml.smi_get_device_memory_used(gpu_index)
                 power = rocml.smi_get_device_average_power(gpu_index)    # W
             except Exception:
                 pass
@@ -192,6 +192,7 @@ def log_epoch_metrics(batch_size, num_batches, epoch, epoch_time, loss_history, 
         epoch_log = {
             'experiment_num': experiment_num,
             'gpu_vendor': gpu_vendor,
+            'gpu_name': gpu_name,
             'model': model,
             'precision': precision,
             'batch_size': batch_size,
