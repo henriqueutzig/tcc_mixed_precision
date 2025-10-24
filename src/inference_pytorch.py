@@ -158,7 +158,7 @@ def parse_args():
     ap.add_argument("--model", type=str, default="resnet50", choices=["resnet50", "bert-large", "gpt2"])
     ap.add_argument("--precision", type=str, default="fp32", choices=["fp32", "fp16", "bf16"])
     ap.add_argument("--batch-size", type=int, default=32)
-    ap.add_argument("--num-batches", type=int, default=50)
+    ap.add_argument("--num-batches", type=int, default=100)
     ap.add_argument("--warmup", type=int, default=5)
     ap.add_argument("--device", type=str, default=None)
     ap.add_argument("--gpu-metrics", action="store_true")
@@ -167,6 +167,7 @@ def parse_args():
     ap.add_argument("--no-pretrained", action="store_true", help="Disable pretrained weights (for comparison).")
     ap.add_argument("--bert-num-labels", type=int, default=2, help="Num labels for BERT classification head.")
     ap.add_argument("--json", action="store_true", help="Output JSON only.")
+    ap.add_argument("--experiment-num", type=int, default=1, help="Experiment number for logging.")
     return ap.parse_args()
 
 def main():
@@ -183,10 +184,18 @@ def main():
         gpu_vendor=args.gpu_vendor,
         gpu_index=args.gpu_index,
         use_pretrained=not args.no_pretrained,
-        bert_num_labels=args.bert_num_labels
+        bert_num_labels=args.bert_num_labels   
     )
+    metrics["experiment_num"] = args.experiment_num
+
     if args.json:
+        gpu_name = torch.cuda.get_device_name(device) 
+        safe_gpu_name = gpu_name.replace(" ", "_") if gpu_name else "unknown"
+        file_name = f"infer_metrics_{safe_gpu_name}_{args.model}_pr{args.precision}_bs{args.batch_size}.json"
+        with open(file_name, "a") as f:
+            json.dump(metrics, f, indent=2)
         print(json.dumps(metrics, indent=2))
+        print(f"Saved metrics JSON to {file_name}")
     else:
         print("Inference Benchmark Results (Pretrained)")
         for k, v in metrics.items():
