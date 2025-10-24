@@ -67,7 +67,7 @@ python -c "import pandas; print(f'Pandas version: {pandas.__version__}')"
 python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
 python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 
-for experiment_num in $(seq 1 10); do
+for experiment_num in $(seq 1 100); do
     echo "Running gpt2 infer experiment number: $experiment_num"
     python src/inference_pytorch.py --gpu-vendor nvidia \
       --model gpt2 --precision fp16 \

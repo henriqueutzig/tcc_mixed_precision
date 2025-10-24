@@ -36,7 +36,7 @@ source envs/nvidia/bin/activate
 echo "Python: $(which python)"
 python --version
 
-for experiment_num in $(seq 1 10); do
+for experiment_num in $(seq 1 100); do
     echo "Running resnet50 infer experiment number: $experiment_num"
     python src/inference_pytorch.py --gpu-vendor nvidia \
       --model resnet50 --precision bf16 \
