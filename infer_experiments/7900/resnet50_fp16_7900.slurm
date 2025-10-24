@@ -44,7 +44,7 @@ for experiment_num in $(seq 1 100); do
       --model resnet50 --precision fp16 \
       --batch-size 32 --epochs 100 \
       --experiment-num $experiment_num --json
-    rsync -a *.json "$HOME/$PROJECT_NAME/epoch_metrics/"
+    rsync -a *.json "$HOME/$PROJECT_NAME/infer_metrics/"
 done
 
 EOF
