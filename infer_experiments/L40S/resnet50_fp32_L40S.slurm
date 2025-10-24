@@ -72,7 +72,7 @@ for experiment_num in $(seq 1 10); do
     python src/inference_pytorch.py --gpu-vendor nvidia \
       --model resnet50 --precision fp32 \
       --batch-size 24 \
-      --experiment-num $experiment_num
+      --experiment-num $experiment_num --json
     rsync -a *.json "$HOME/$PROJECT_NAME/infer_metrics/"
 done
 
