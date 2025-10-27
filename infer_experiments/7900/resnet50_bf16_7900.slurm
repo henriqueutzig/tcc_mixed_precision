@@ -40,17 +40,17 @@ python --version
 
 for experiment_num in $(seq 1 100); do
     echo "Running resnet50 experiment number: $experiment_num"
-    python src/main.py --gpu-vendor amd \
+    python src/inference_pytorch.py --gpu-vendor amd \
       --model resnet50 --precision bf16 \
-      --batch-size 32 --epochs 100 \
-      --experiment-num $experiment_num --json
+      --batch-size 32 \
+      --experiment-num $experiment_num --json --gpu-index 1
     rsync -a *.json "$HOME/$PROJECT_NAME/infer_metrics/"
 done
 
 EOF
 
 # (Optional) single inference benchmark example:
-# python src/inference_pytorch.py --model resnet50 --precision bf16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_bf16.json
+# python src/inference_pytorch.py --model resnet50 --precision bf16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json --gpu-index 1 > results/inference_resnet50_bf16.json
 
 # Sync results back
 rsync -a results "$HOME/$PROJECT_NAME/"

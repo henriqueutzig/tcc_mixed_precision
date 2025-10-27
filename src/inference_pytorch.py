@@ -63,7 +63,7 @@ def percentile(data, p):
     return data[lo]*(1-frac) + data[hi]*frac
 
 def benchmark_inference(model_name, precision, batch_size, num_batches, warmup, device,
-                        use_gpu_logger=False, gpu_vendor="nvidia", gpu_index=0,
+                        gpu_vendor="nvidia", gpu_index=0,
                         use_pretrained=True, bert_num_labels=2):
     set_seed(42)
 
@@ -81,10 +81,9 @@ def benchmark_inference(model_name, precision, batch_size, num_batches, warmup, 
     warmup_iter = iter_builder(batch_size, warmup)
     bench_iter = iter_builder(batch_size, num_batches)
 
-    gpu_logger = None
-    if use_gpu_logger and device.type == "cuda":
-        gpu_logger = GpuMetricsLogger(gpu_vendor=gpu_vendor, gpu_index=gpu_index, interval=0.5)
-        gpu_logger.start()
+    
+    gpu_logger = GpuMetricsLogger(gpu_vendor=gpu_vendor, gpu_index=gpu_index, interval=0.5)
+    gpu_logger.start()
 
     latencies = []
     total_samples = 0
@@ -119,8 +118,8 @@ def benchmark_inference(model_name, precision, batch_size, num_batches, warmup, 
             total_samples += batch_size
     end_time = time.time()
 
-    if gpu_logger:
-        gpu_logger.stop()
+    
+    gpu_logger.stop()
 
     wall_time = end_time - start_time
     throughput = total_samples / wall_time if wall_time > 0 else 0.0
@@ -144,9 +143,9 @@ def benchmark_inference(model_name, precision, batch_size, num_batches, warmup, 
         "peak_memory_mb": (torch.cuda.max_memory_allocated() / (1024**2)) if device.type == "cuda" else 0
     }
 
-    if gpu_logger:
-        agg_gpu, _ = gpu_logger.get_results()
-        metrics.update({
+    
+    agg_gpu = gpu_logger.get_results()
+    metrics.update({
             "gpu_peak_memory_logger_mb": agg_gpu['peak_memory_mb'],
             "gpu_avg_util_percent": agg_gpu['avg_utilization_percent'],
             "gpu_avg_power_watts": agg_gpu['avg_power_watts']
@@ -180,7 +179,6 @@ def main():
         num_batches=args.num_batches,
         warmup=args.warmup,
         device=device,
-        use_gpu_logger=args.gpu_metrics,
         gpu_vendor=args.gpu_vendor,
         gpu_index=args.gpu_index,
         use_pretrained=not args.no_pretrained,

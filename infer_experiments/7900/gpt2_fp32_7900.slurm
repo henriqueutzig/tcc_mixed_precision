@@ -43,13 +43,13 @@ for experiment_num in $(seq 1 100); do
     python src/inference_pytorch.py --gpu-vendor amd \
       --model gpt2 --precision fp32 \
       --batch-size 2 \
-      --experiment-num $experiment_num --json
+      --experiment-num $experiment_num --json --gpu-index 1
     rsync -a *.json "$HOME/$PROJECT_NAME/infer_metrics/"
 done
 
 EOF
 # (Optional) single inference benchmark example:
-# python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json > results/inference_resnet50_fp16.json
+# python src/inference_pytorch.py --model resnet50 --precision fp16 --batch-size 256 --num-batches 100 --warmup 5 --gpu-metrics --gpu-vendor amd --json --gpu-index 1 > results/inference_resnet50_fp16.json
 
 # Sync results back
 rsync -a results "$HOME/$PROJECT_NAME/"
